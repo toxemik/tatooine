@@ -1,0 +1,83 @@
+:root {
+    --uiControlsWidth: 200px;   /* the width is used to center the UI controls panel */
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.siteWrapper {
+    font-family: 'Poppins', sans-serif;
+}
+
+.contentWrapper {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.quadrant {
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em;
+    border: solid 1px green;    /* DEBUG */
+}
+
+@media(max-width: 768px) {
+    .quadrant {
+        width: 100vw;
+    }
+    .vide {
+        display: none;
+    }
+}
+
+.uiControls {
+    visibility: hidden;
+    width: var(--uiControlsWidth);
+    position: absolute;
+    bottom: 0;
+    left: calc( 50% - var( --uiControlsWidth ) / 2 );
+    margin: .5em;
+    border-radius: .5em;
+    background-color: rgba( 0, 0, 0, .5 );
+}
+
+
+.uiControls ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.uiControls li {
+    font-weight: 900;
+    color: #EEE;
+}
+
+img {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 3em;
+    color: #EEE;
+    border: solid 1px green;    /* DEBUG */
+}
+
+.description {
+    font-size: 1.2em;
+    color: #CCC;
+    border: solid 1px green;    /* DEBUG */
+}
