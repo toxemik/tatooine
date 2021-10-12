@@ -1,5 +1,5 @@
 :root {
-    --uiControlsWidth: 200px;   /* the width is used to center the UI controls panel */
+    --uiArrowSize: 50px;   /* the width and height of the Next and Previous controls */
 }
 
 body * {
@@ -9,6 +9,11 @@ body * {
 body {
     margin: 0;
 }
+
+/**
+ * wrappers
+ * *************************
+ * */
 
 .siteWrapper {
     font-family: 'Poppins', sans-serif;
@@ -20,6 +25,11 @@ body {
     flex-wrap: wrap;
 }
 
+/**
+ * quadrant
+ * *************************
+ * */
+
 .quadrant {
     width: 50vw;
     height: 50vh;
@@ -27,7 +37,6 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 2em;
-    border: solid 1px green;    /* DEBUG */
 }
 
 @media(max-width: 768px) {
@@ -39,45 +48,77 @@ body {
     }
 }
 
-.uiControls {
+/**
+ * ui elements
+ * *************************
+ * */
+
+.ui {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     visibility: hidden;
-    width: var(--uiControlsWidth);
     position: absolute;
-    bottom: 0;
-    left: calc( 50% - var( --uiControlsWidth ) / 2 );
-    margin: .5em;
-    border-radius: .5em;
+    color: #AAA;
     background-color: rgba( 0, 0, 0, .5 );
 }
 
-
-.uiControls ul {
-    display: flex;
-    justify-content: space-evenly;
-    list-style-type: none;
-    padding-left: 0;
+.ui:hover {
+    cursor: pointer;
 }
 
-.uiControls li {
-    font-weight: 900;
-    color: #EEE;
+.previous, .next {
+    width: var(--uiArrowSize);
+    height: var(--uiArrowSize);
+    top: calc( 50% - var( --uiArrowSize) / 2 );
+    font-size: 1.5em;
 }
+
+.next {
+    right: 0;
+}
+
+.pageNumber {
+    padding: .35em;
+    bottom: 0;
+    right: 0;
+}
+
+.menuToggler {
+    width: 50px;
+    height: 35px;
+    font-size: 1.5em;
+}
+
+/**
+ * content
+ * *************************
+ * */
 
 img {
     width: 100vw;
     height: 100vh;
-    position: fixed;
+    position: absolute;
     object-fit: cover;
 }
 
 .title {
     font-size: 3em;
     color: #EEE;
-    border: solid 1px green;    /* DEBUG */
 }
 
 .description {
+    padding:  1em;
     font-size: 1.2em;
     color: #CCC;
-    border: solid 1px green;    /* DEBUG */
+    background-color: rgba( 0, 0, 0, .2 );
+}
+
+@media(max-width: 768px) {
+    .title {
+        font-size: 2.5em;
+    }
+    .description {
+        font-size: 1em;
+    }
 }
