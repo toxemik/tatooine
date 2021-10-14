@@ -30,6 +30,8 @@ const data = {
 const uiElements = document.querySelectorAll('.ui:not(.menuPanel, .menuToggler)');
 // get the .menuPanel element
 const menuTogglerElement = document.querySelector('.menuPanel');
+// get the current page index
+let currentPage = 1;
 
 // the stop variable is useful to get a single onmousemove event
 // at a time
@@ -63,22 +65,82 @@ document.querySelector('.menuToggler').onclick = () => {
     }
 }
 
-// get the current page name
-let currentPage = 'tatooine';
+// on the click event on the next page arrow
+document.querySelector('.next').onclick = () => {
+    goToNextPage(currentPage);
+}
+
+// on the click event on the next page arrow
+document.querySelector('.previous').onclick = () => {
+    goToPreviousPage(currentPage);
+}
+
+// get the total number of pages in data
+function getTotalPagesNumber() {
+    let totalPages = 0;
+    for(const page in data)
+        totalPages++;
+    return totalPages;
+}
+
 
 // load the content related to the page arg (menu item)
-function loadContent(page) {
-    for(const content in data) {
-        if(content == page) {
+function loadContent(pageRequest) {
+    let pageNumber = 0;
+    for(const contentKey in data) {
+        pageNumber++;
+        if(contentKey == pageRequest) {
             // change the current page name
-            currentPage = page
+            currentPage = pageNumber
             // load the content
-            document.querySelector('img').setAttribute('src', data[page].img);
-            document.querySelector('.title').innerHTML = data[page].title;
-            document.querySelector('.description').innerHTML = data[page].description;
+            document.querySelector('img').setAttribute('src', data[pageRequest].img);
+            document.querySelector('.title').innerHTML = data[pageRequest].title;
+            document.querySelector('.description').innerHTML = data[pageRequest].description;
+            document.querySelector('.pageNumber').innerHTML = pageNumber + ' / ' + getTotalPagesNumber();
             // hide the menu
             menuTogglerElement.style.visibility = 'hidden';
             menuPanelVisible = false;
+            return;
         }
+    }
+}
+
+function goToNextPage(currentPage) {
+    switch(currentPage) {
+        case 1:
+            loadContent('mosEspa');
+            break;
+        case 2:
+            loadContent('tatooineTraders');
+            break;
+        case 3:
+            loadContent('systemesBinaires');
+            break;
+        case 4:
+            loadContent('quartierEsclaves');
+            break;
+        case 5:
+            loadContent('tatooine');
+            break;
+    }
+}
+
+function goToPreviousPage(currentPage) {
+    switch(currentPage) {
+        case 1:
+            loadContent('quartierEsclaves');
+            break;
+        case 2:
+            loadContent('tatooine');
+            break;
+        case 3:
+            loadContent('mosEspa');
+            break;
+        case 4:
+            loadContent('tatooineTraders');
+            break;
+        case 5:
+            loadContent('systemesBinaires');
+            break;
     }
 }
